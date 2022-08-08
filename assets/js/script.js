@@ -1,28 +1,78 @@
-//1. window prompts for the password and criteria
-function getPassword() {
-  var
-}
-//2. Select password criteria from list
 
-var passwordCri = {
-  chars: "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*ABCDEFGHIJKLMNOPRSTUVWXYZ",
+var Numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','V','W','X','Y','Z'];
+var specialChars=['!','"','#','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[',']','\\','`','{','}','|','~'];
  
+
+
+function getPassword() {
+  var length = parseInt(window.prompt('Please choose a length for your password between 8 and 128 characters. '));
+  if (isNaN(length) === true) {
+    alert('Length of password must be specified!');
+    return;
+  }
+  if (passwordCri.length < 8 || passwordCri.length > 128) {
+  window.alert("Password must be between 8 and 128 characters!");
+  };
+
+  var specialChars = confrim('Would you like your password to inculde special characters?');
+  var Numbers = confrim('Would you like your password to inculde numbers?');
+  var lower = confirm('Would you like your password to inculde lowercase characters?');
+  var upper = confirm('Would you like your password to inculde uppercase characters?');
+
+
+ 
+
+
+  function ranNum(min, max) {
+    min = "8";
+    max
+  }
+
+
+
+  if (
+    specialChars === false &&
+    Numbers === fasle &&
+    lower === false &&
+    upper===false
+  ) {
+    alert('Please select at least one chcracter type');
+    return;
+  }
+  var Options = {
+    length:length,
+    specialChars: specialChars,
+    Numbers: Numbers,
+    lower: lower,
+    upper:upper
+  }
+  return Options;
 };
-var generateBtn = document.querySelector('#generate');
-//3. password length of at least 8 characters and no more than 128 characters (Math(8,128))
-//4. Character types = lowercase, uppercase, numeric and/or special characters
-//5.Each input validated and at least one character type should be selected
-if (passwordCri.length < 8 || passwordCri.length> 128) {
-  window.alert("Password does not meet character length requirement.");
+function getRandom(ran) {
+  
 }
 
-//6. Password generated matching selected criteria
-//7. Password displayed in an alert or written to the page
+
+function generatePassword(){ 
+
 // Assignment code her/e
-
-
+  var passOptions = getPassOpts();
+  var result = [];
+  var probChars = [];
+  var actualChars = [];
+  if (passOptions.specialChars) {
+    probChars = probChars.concat(specialChars);
+    actualChars.push(getRandom(specialChars));
+  }
+  if (passOptions.Numbers) {
+    probChars=probChars.concat()
+  }  
+  return result.join('');    
+};
 // Get references to the #generate element
-
+var generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
   var enterPass = "";
