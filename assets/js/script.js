@@ -7,41 +7,47 @@ var specialChars=['!','"','#','$','%','&','(',')','*','+',',','-','.','/',':',';
 
 
 function getPassword() {
-  var length = parseInt(window.prompt('Please choose a length for your password between 8 and 128 characters. '));
-  if (isNaN(length) === true) {
+  var passLength = parseInt(prompt('Please choose a length for your password between 8 and 128 characters. '));
+  
+  if (isNaN(passLength) === true) {
     alert('Length of password must be specified!');
     return;
   }
-  if (length < 8 || length > 128) {
-  window.alert("Password must be between 8 and 128 characters!");
+  
+  if (passLength < 8 || passLength > 128) {
+    alert("Password must be between 8 and 128 characters!");
+    return;
   };
 
-  var incNumbers = confrim('Would you like your password to inculde numbers?');
+  var incNumbers = confirm('Would you like your password to inculde numbers?');
   var incLower = confirm('Would you like your password to inculde lowercase characters?');
   var incUpper = confirm('Would you like your password to inculde uppercase characters?');
-  var incSpecialChars = confrim('Would you like your password to inculde special characters?');
+  var incSpecialChars = confirm('Would you like your password to inculde special characters?');
 
   if (
-    incNumbers === fasle &&
+    incNumbers === false &&
     incLower === false &&
     incUpper === false &&
     incSpecialChars === false 
   ) {
-    alert('Please select at least one chcracter type!');
+    alert('Please select at least one character type!');
     return;
   }
   var Options = {
-    length:length,
+    passLength: passLength,
     incNumbers: incNumbers,
     incLower: incLower,
     incUpper: incUpper,
     incSpecialChars: incSpecialChars
-  }
+  };
+
   return Options;
 };
+
 function getRandom(ran) {
-  var Index = MAth.floor(math.random() * ran.length);
+  var Index = Math.floor(Math.random() * ran.length);
   var random = ran[Index];
+
   return random;
 }
 
@@ -69,25 +75,22 @@ function generatePassword(){
   }
 
   for (var i = 0; i < passOptions.length; i++){
-    var possibleChars = getRandom(probChars);
-    result.push(possibleChars);
+    result.push(getRandom(probChars));
   }
   for (var i = 0; i < actualChars.length; i++){
-    result[i]
+    result[i] = actualChars[i];
   }
-  if(passOptions.in)
+  
   return result.join('');    
 };
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
-  var enterPass = "";
+  
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   
-  while (enterPass === "" || enterPass === null) {}
- 
   passwordText.value = password;
 
 }
