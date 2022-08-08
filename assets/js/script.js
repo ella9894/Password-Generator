@@ -12,63 +12,70 @@ function getPassword() {
     alert('Length of password must be specified!');
     return;
   }
-  if (passwordCri.length < 8 || passwordCri.length > 128) {
+  if (length < 8 || length > 128) {
   window.alert("Password must be between 8 and 128 characters!");
   };
 
-  var specialChars = confrim('Would you like your password to inculde special characters?');
-  var Numbers = confrim('Would you like your password to inculde numbers?');
-  var lower = confirm('Would you like your password to inculde lowercase characters?');
-  var upper = confirm('Would you like your password to inculde uppercase characters?');
-
-
- 
-
-
-  function ranNum(min, max) {
-    min = "8";
-    max
-  }
-
-
+  var incNumbers = confrim('Would you like your password to inculde numbers?');
+  var incLower = confirm('Would you like your password to inculde lowercase characters?');
+  var incUpper = confirm('Would you like your password to inculde uppercase characters?');
+  var incSpecialChars = confrim('Would you like your password to inculde special characters?');
 
   if (
-    specialChars === false &&
-    Numbers === fasle &&
-    lower === false &&
-    upper===false
+    incNumbers === fasle &&
+    incLower === false &&
+    incUpper === false &&
+    incSpecialChars === false 
   ) {
-    alert('Please select at least one chcracter type');
+    alert('Please select at least one chcracter type!');
     return;
   }
   var Options = {
     length:length,
-    specialChars: specialChars,
-    Numbers: Numbers,
-    lower: lower,
-    upper:upper
+    incNumbers: incNumbers,
+    incLower: incLower,
+    incUpper: incUpper,
+    incSpecialChars: incSpecialChars
   }
   return Options;
 };
 function getRandom(ran) {
-  
+  var Index = MAth.floor(math.random() * ran.length);
+  var random = ran[Index];
+  return random;
 }
 
-
 function generatePassword(){ 
-
-// Assignment code her/e
-  var passOptions = getPassOpts();
+  var passOptions = getPassword();
   var result = [];
   var probChars = [];
   var actualChars = [];
-  if (passOptions.specialChars) {
+
+  if (passOptions.incNumbers) {
+    probChars = probChars.concat(Numbers);
+    actualChars.push(getRandom(Numbers));
+  }  
+  if (passOptions.incLower) {
+    probChars = probChars.concat(lower);
+    actualChars.push(getRandom(lower));
+  } 
+  if (passOptions.incUpper) {
+    probChars = probChars.concat(upper);
+    actualChars.push(getRandom(upper));
+  } 
+  if (passOptions.incSpecialChars) {
     probChars = probChars.concat(specialChars);
     actualChars.push(getRandom(specialChars));
   }
-  if (passOptions.Numbers) {
-    probChars=probChars.concat()
-  }  
+
+  for (var i = 0; i < passOptions.length; i++){
+    var possibleChars = getRandom(probChars);
+    result.push(possibleChars);
+  }
+  for (var i = 0; i < actualChars.length; i++){
+    result[i]
+  }
+  if(passOptions.in)
   return result.join('');    
 };
 // Get references to the #generate element
