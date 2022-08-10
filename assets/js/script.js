@@ -74,7 +74,7 @@ function generatePassword(){
     actualChars.push(getRandom(specialChars));
   }
 
-  for (var i = 0; i < passOptions.length; i++){
+  for (var i = 0; i < passOptions.passLength; i++){
     result.push(getRandom(probChars));
   }
   for (var i = 0; i < actualChars.length; i++){
